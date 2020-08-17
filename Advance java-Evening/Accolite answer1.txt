@@ -1,0 +1,280 @@
+Q5.
+import java.sql.*;
+
+public class JDBC
+{
+Connection conn = null;
+   Statement stmt = null;
+
+public static void main(String[] args) {
+   Connection conn = null;
+   Statement stmt = null;
+try {
+
+   Class.forName("oracle.jdbc.driver.OracleDriver");
+    
+String URL = "jdbc:oracle:thin:Vivek1234/password@Vivek:1521:DATABASE NAME";
+    conn = DriverManager.getConnection(URL);
+
+ System.out.println("Connected database successfully");
+
+
+// Execute a query
+      System.out.println("Creating statement");
+      stmt = conn.createStatement();
+
+      String sql = "SELECT * FROM Customers LIMIT 10";
+        int i=10;
+      //STEP 5: Extract data from result set
+      while(i>=0){
+         //Retrieve by column name
+         int id  = rs.getInt("id");
+         int age = rs.getInt("age");
+         String first = rs.getString("first");
+         String last = rs.getString("last");
+
+         //Display values
+         System.out.print("ID: " + id);
+         System.out.print(", Age: " + age);
+         System.out.print(", First: " + first);
+         System.out.println(", Last: " + last);
+           
+            i--;
+      }
+    
+   }catch(SQLException se){
+      //Handle errors for JDBC
+      se.printStackTrace();
+   }catch(Exception e){
+      //Handle errors for Class.forName
+      e.printStackTrace();
+   }finally{
+      //finally block used to close resources
+      try{
+         if(stmt!=null)
+            conn.close();
+      }catch(SQLException se){
+      }// do nothing
+      try{
+         if(conn!=null)
+            conn.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }
+   }
+ 
+}
+}
+
+Q7.
+import java.io.File; 
+  
+public class Help
+{ 
+     static void Print(File[] arr,int index,int level)  
+     { 
+        
+         if(index == arr.length) 
+             return; 
+           
+         // tabs for internal levels 
+         for (int i = 0; i < level; i++) 
+             System.out.print("\t"); 
+           
+         // for files 
+         if(arr[index].isFile()) 
+             System.out.println(arr[index].getName()); 
+           
+           Print(arr,++index, level); 
+    } 
+      
+    // Driver Method 
+    public static void main(String[] args) 
+    { 
+        // Provide full path for directory(change accordingly)   
+        String maindirectpath = "C:\\Users\\Vivek Dahiya\\Desktop\\Accolite"; 
+                  
+        // File object 
+        File maindirect = new File(maindirectpath); 
+           
+        if(maindirect.exists() && maindirect.isDirectory()) 
+        { 
+            // array for files and sub-directories  
+            // of directory pointed by maindir 
+            File array[] = maindirect.listFiles(); 
+              
+            System.out.println("Files from main directory are " + maindirect); 
+           
+              
+            // Calling recursive method 
+            Print(array,0,0);  
+       }  
+    } 
+} 
+
+Q10.
+import java.io.*; 
+import java.nio.file.Files; 
+import java.nio.file.*; 
+  
+public class Move 
+{ 
+    public static void main(String[] args) throws IOException 
+    { 
+        Path temp = Files.move
+        (Paths.get("C:\\Users\\Vivek\\Desktop\\77.txt"),  
+        Paths.get("C:\\Users\\Vivek\\Desktop\\test\\778.txt")); 
+  
+        if(temp != null) 
+        { 
+            System.out.println("File renamed and moved successfully"); 
+        } 
+        else
+        { 
+            System.out.println("Failed to move file"); 
+        } 
+    } 
+} 
+
+Q.9
+import java.io.*; 
+class copyfile 
+{ 
+    public static void main(String args[]) 
+    throws FileNotFoundException,IOException 
+    { 
+        
+        FileInputStream fin = new FileInputStream(args[0]); 
+        FileOutputStream fout = new FileOutputStream(args[1]); 
+  
+        int a; 
+        while  ((a=fin.read()) != -1) 
+            fout.write(a); 
+        fin.close(); 
+        fout.close(); 
+    } 
+}
+
+Q.8
+
+import java.io.*;
+
+public class FileChecker {
+
+   private static final String FILE_DIR = "c:\\folder";
+   private static final String FILE_TEXT_EXT = ".txt";
+
+   public static void main(String args[]) {
+	new FileChecker().deleteFile(FILE_DIR,FILE_TEXT_EXT);
+   }
+
+   public void deleteFile(String folder, String ext){
+
+     GenericExtFilter filter = new GenericExtFilter(ext);
+     File dir = new File(folder);
+
+     //list out all the file name with .txt extension
+     String[] list = dir.list(filter);
+
+     if (list.length == 0) return;
+
+     File fileDelete;
+
+     for (String file : list){
+   	String temp = new StringBuffer(FILE_DIR)
+                      .append(File.separator)
+                      .append(file).toString();
+    	fileDelete = new File(temp);
+    	boolean isdeleted = fileDelete.delete();
+    	System.out.println("file : " + temp + " is deleted : " + isdeleted);
+     }
+   }
+
+   //inner class, generic extension filter
+   public class GenericExtFilter implements FilenameFilter {
+
+       private String ext;
+
+       public GenericExtFilter(String ext) {
+         this.ext = ext;
+       }
+
+       public boolean accept(File dir, String name) {
+         return (name.endsWith(ext));
+       }
+    }
+} 
+
+Q.6
+package MyPackage;
+ 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+  
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+  
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+  
+public class XMl {
+  
+     public static void main(String[] args) throws ParserConfigurationException,
+          SAXException, IOException {
+  
+        //Get Document Builder
+          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+          DocumentBuilder builder = factory.newDocumentBuilder();
+  
+          // Load the input XML document, parse it and return an instance of the
+          // Document class.
+          Document document = builder.parse(new File("Employees.xml"));
+  
+          List<Employee> employees = new ArrayList<Employee>();
+          NodeList nodeList = document.getDocumentElement().getChildNodes();
+          for (int i = 0; i < nodeList.getLength(); i++) {
+               Node node = nodeList.item(i);
+  
+               if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem = (Element) node;
+  
+                    // Get the value of the ID attribute.
+                    String ID = node.getAttributes().getNamedItem("ID").getNodeValue();
+  
+                    // Get the value of all sub-elements.
+                    String firstname = elem.getElementsByTagName("Firstname")
+                                        .item(0).getChildNodes().item(0).getNodeValue();
+  
+                    String lastname = elem.getElementsByTagName("Lastname").item(0)
+                                        .getChildNodes().item(0).getNodeValue();
+  
+                    Integer age = Integer.parseInt(elem.getElementsByTagName("Age")
+                                        .item(0).getChildNodes().item(0).getNodeValue());
+  
+                    Double salary = Double.parseDouble(elem.getElementsByTagName("Salary")
+                                        .item(0).getChildNodes().item(0).getNodeValue());
+  
+                    employees.add(new Employee(ID, firstname, lastname, age, salary));
+               }
+          }
+  
+          // Print all employees.
+          for (Employee empl: employees)
+               System.out.println(empl.toString());
+     }
+}
+
+ 
+
+
+
+
+
+
+

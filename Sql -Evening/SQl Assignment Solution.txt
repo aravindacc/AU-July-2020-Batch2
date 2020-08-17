@@ -1,0 +1,88 @@
+// DML and DDL Commands for Hospital Management System
+
+CREATE TABLE Doctor
+(
+Doctor_ID VARCHAR(10) Unique Key,
+Doctor_Name VARCHAR(20) NOT NULL,
+Speciality VARCHAR(20),
+Experience Integer(2),
+Primary Key(Doctor_Name)
+);
+drop table Doctor;
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_1","Shubham","Physician","4");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_2","Nikhil","Physician","9");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_3","VikaS","Allergist","6");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_4","Rao","Cardiologist","4");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_5","Shanu","Cardiologist","9");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_6","Shubha SIngh","Gynecoogist","7");
+INSERT INTO Doctor(Doctor_ID,Doctor_Name,Speciality,Experience) VALUES("D_7","Vivek","Gastoentrologist","5");
+
+CREATE TABLE Patient
+(
+Patient_ID VARCHAR(10) NOT NULL,
+Patient_Name VARCHAR(20) NOT NULL,
+Age Integer,
+Sex CHAR(2),
+Address VARCHAR(50),
+Doctor_ID VARCHAR(10) ,
+Primary Key(Patient_ID)
+);
+
+Alter table Patient add foreign key(Doctor_ID) references Doctor(Doctor_ID);
+drop table Patient;
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_1","Ravi","23","M","D-21,Jharoda Kalan","D_1");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_2","Sahil Nara","30","M","M-2h,Defence Colony","D_2");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_3","Shobit","38","M","C-143,meerut","D_7");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_4","Soumya","22","F","M-2h Bhagpat","D_5");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_5","Aditya","18","M","H-90,Mundka","D_6");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_6","Arun","30","M","M-2h,Defence Colony","D_1");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_7","Raunak","37","M","M-2h,Dilip nagar","D_4");
+INSERT INTO Patient(Patient_Id,Patient_Name,Age,Sex,Address,Doctor_ID) VALUES ("P_8","Laxman","50","M","M-2h,Dwarka","D_4");
+
+
+
+CREATE TABLE PATIENT_DETAIL
+(
+Patient_ID VARCHAR(20) NOT NULL,
+Room_number  INTEGER(3),
+Admission_date DATE,
+Discharge_date DATE,
+PRIMARY KEY(Patient_ID),
+FOREIGN KEY(PATIENT_ID) REFERENCES Patient(Patient_ID)
+);
+
+Alter table PATIENT_DETAIL add foreign key(Patient_ID) references Patient(Patient_ID);
+INSERT INTO PATIENT_DETAIL(Patient_ID,Room_number,Admission_date,Discharge_date) VALUES("P_2","1","2020-08-11","2020-08-05");
+INSERT INTO PATIENT_DETAIL(Patient_ID,Room_number,Admission_date,Discharge_date) VALUES("P_4","2","2020-07-14","2020-07-17");
+INSERT INTO PATIENT_DETAIL(Patient_ID,Room_number,Admission_date,Discharge_date) VALUES("P_7","3","2020-08-07","2020-08-12");
+INSERT INTO PATIENT_DETAIL(Patient_ID,Room_number,Admission_date,Discharge_date) VALUES("P_3","4","2020-07-12","2020-07-07");
+INSERT INTO PATIENT_DETAIL(Patient_ID,Room_number,Admission_date,Discharge_date) VALUES("P_1","5","2020-08-01","2020-07-15");
+
+Q.2
+Select P.Patient_ID,P.Patient_Name,D.Doctor_NAME, D.Speciality from Doctor D,Patient P
+where D.Doctor_ID=P.Doctor_ID;
+
+Q.3
+Select count(Discharge_Date), Discharge_Date from PATIENT_DETAIL where Discharge_Date between
+curdate() and curdate()-7
+group by Discharge_date;
+
+Please also find screenshot of result attaches with it.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
