@@ -1,0 +1,131 @@
+Ques 1 : Write a Java program to print the result of the following operations.
+	Test Data:
+	a. -5 + 8 * 6                    b. ( 55 + 9 ) % 9
+	c. 20 + -3 * 5 / 8               d. 5 + 15 / 3 * 2 - 8 % 3
+Soln 1:
+
+import java.util.Stack; 
+  
+public class EvaluateString 
+{ 
+    public static int evaluate(String expression) 
+    { 
+        char[] tokens = expression.toCharArray(); 
+  
+        Stack<Integer> values = new Stack<Integer>(); 
+  
+        Stack<Character> ops = new Stack<Character>(); 
+  
+        for (int i = 0; i < tokens.length; i++) 
+        { 
+            if (tokens[i] == ' ') 
+                continue; 
+  
+            if (tokens[i] == '-' &&tokens[i+1] >= '0' && tokens[i+1] <= '9') 
+            { i++;
+                StringBuffer sbuf = new StringBuffer(); 
+                
+                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') 
+                    sbuf.append(tokens[i++]); 
+                Integer p=Integer.parseInt(sbuf.toString());
+                p=-1*p;
+                values.push(p);
+            } else if (tokens[i] >= '0' && tokens[i] <= '9') 
+            {  StringBuffer sbuf = new StringBuffer(); 
+                
+                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9') 
+                    sbuf.append(tokens[i++]); 
+                Integer p=Integer.parseInt(sbuf.toString());
+                values.push(p);
+            } 
+  
+            else if (tokens[i] == '(') 
+                ops.push(tokens[i]); 
+  
+            else if (tokens[i] == ')') 
+            { 
+                while (ops.peek() != '(') 
+                  values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+                ops.pop(); 
+            } 
+  
+            else if (tokens[i] == '+' || tokens[i] == '-' || 
+                     tokens[i] == '*' || tokens[i] == '/' || tokens[i] == '%') 
+            { 
+                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek())) 
+                  values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+  
+                ops.push(tokens[i]); 
+            } 
+        } 
+  
+        while (!ops.empty()) 
+            values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+  
+        return values.pop(); 
+    } 
+    public static boolean hasPrecedence(char op1, char op2) 
+    { 
+        if (op2 == '(' || op2 == ')') 
+            return false; 
+        if ((op1 == '*' || op1 == '/' || op1 == '%') && (op2 == '+' || op2 == '-')) 
+            return false; 
+        else
+            return true; 
+    } 
+  
+    public static int applyOp(char op, int b, int a) 
+    { 
+        switch (op) 
+        { 
+        case '+': 
+            return a + b; 
+        case '-': 
+            return a - b; 
+        case '*': 
+            return a * b; 
+        case '/': 
+            if (b == 0) 
+                throw new
+                UnsupportedOperationException("Cannot divide by zero"); 
+            return a / b; 
+        case '%': 
+            if (b == 0) 
+                throw new
+                UnsupportedOperationException("Cannot mod by zero"); 
+            return a % b;
+        } 
+        return 0; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        System.out.println(EvaluateString.evaluate("-5 + 8 * 6")); 
+        System.out.println(EvaluateString.evaluate("( 55 + 9 ) % 9")); 
+        System.out.println(EvaluateString.evaluate("20 + 3 * 5 / 8")); 
+        System.out.println(EvaluateString.evaluate("5 + 15 / 3 * 2 - 8 % 3")); 
+    } 
+}
+
+
+Ques 2: Write a program to print an American flag on the screen.
+Soln 2 :
+
+public class AmericanFlag{
+
+     public static void main(String []args){
+        String s1 = "* * * * * * ";
+String s2 = " * * * * *  ";
+String e1 = "==================================";
+String e2 = "==============================================";
+
+for(int i = 0; i < 9; i++){
+System.out.println((i%2==0 ? s1 : s2) + e1);
+
+}
+
+for(int j = 0; j < 4; j++){
+System.out.println(e2);
+}
+     }
+}
