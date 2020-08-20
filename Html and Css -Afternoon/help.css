@@ -1,0 +1,108 @@
+.fir{
+ 
+    color:red;
+    font-size:50px;
+    text-align:center;
+
+}
+
+.sec{
+     color:blue;
+     font-size:22px;
+     text-align:center;
+     letter-spacing:3px;
+
+
+}
+.four{
+
+    color:white;
+    background-color:orange;
+    border-width:5px;
+    border-style:solid;
+     text-align:center;
+     border-color:orange;
+}
+
+
+.five{
+    color:white;
+    background-color:orangered;
+    border-width:5px;
+    border-style:solid;
+    text-align:center;
+    border-color:orange;
+}
+.seven{
+    background-image:url(https://i.pinimg.com/originals/e1/e0/a0/e1e0a0f95b9844c0ffeb74f23ef335c9.jpg);
+    color:white;
+    text-align:center;
+    border-style:solid;
+    border-color:red;
+    border-width:6px;
+}
+
+.eight{
+
+    color:black;
+    background-image: url(https://previews.123rf.com/images/ralelav/ralelav1609/ralelav160900040/63154652-world-map-with-borders-orange-color.jpg);
+    border-color:orange;
+    border-width:5px;
+    border-style:solid;
+    
+}
+.sigi
+{
+    color:red;
+    background-color:white;
+    text-align:right;
+
+}
+.sig{
+    color:black;
+    font-size:25px;
+    align-items:center;
+}
+.six{
+
+    color:white;
+    text-align:center;
+    background-color:orange;
+    border-color:orange;
+    border-style:solid;
+    border-width:4px;
+}
+
+.third{
+
+    border-width:4px;
+    border-style:solid;
+    background-image:url(https://image.shutterstock.com/image-photo/fountain-pen-on-aged-paper-260nw-586546133.jpg);
+     border-color:slategray;
+}
+
+.ten{
+    color:black;
+    background-color:darkslateblue;
+    border-color:darkslateblue;
+    border-style:solid;
+    border-width:4px;
+    text-align:center;
+    
+}
+.ele
+{
+    color:black;
+    text-align:right;
+    font-size:25px;
+}
+.shubh{
+    background-color:rgb(179, 169, 241);
+    font-size:20px;
+    color:black;
+    border-width:5px;
+    border-style:solid;
+    border-color:rgb(179, 169, 241);
+
+}
+
