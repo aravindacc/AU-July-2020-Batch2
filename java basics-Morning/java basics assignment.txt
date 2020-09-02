@@ -1,0 +1,127 @@
+Q1.
+import java.util.Stack; 
+  
+public class Answer 
+{ 
+    public static int find(String expression) 
+    { 
+        char[] help = expression.toCharArray(); 
+  
+        Stack<Integer> values = new Stack<Integer>(); 
+  
+        Stack<Character> ops = new Stack<Character>(); 
+  
+        for (int i = 0; i < help.length; i++) 
+        { 
+            if (help[i] == ' ') 
+                continue; 
+  
+            if (help[i] == '-' &&  help[i+1] >= '0' && help[i+1] <= '9') 
+            {
+                   i++;
+                StringBuffer sbuf = new StringBuffer(); 
+                
+                while (i < help.length && help[i] >= '0' && help[i] <= '9') 
+                    sbuf.append(tokens[i++]); 
+                Integer p=Integer.parseInt(sbuf.toString());
+                p=-1*p;
+                values.push(p);
+            } else if (help[i] >= '0' && help[i] <= '9') 
+            {  StringBuffer sbuf = new StringBuffer(); 
+                
+                while (i < help.length && help[i] >= '0' && help[i] <= '9') 
+                    sbuf.append(help[i++]); 
+                Integer p=Integer.parseInt(sbuf.toString());
+                values.push(p);
+            } 
+  
+            else if (help[i] == '(') 
+                ops.push(help[i]); 
+  
+            else if (help[i] == ')') 
+            { 
+                while (ops.peek() != '(') 
+                  values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+                ops.pop(); 
+            } 
+  
+            else if (help[i] == '-' || help[i] == '+' || 
+                     help[i] == '*' || help[i] == '/' || help[i] == '%') 
+            { 
+                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek())) 
+                  values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+  
+                ops.push(help[i]); 
+            } 
+        } 
+  
+        while (!ops.empty()) 
+            values.push(applyOp(ops.pop(), values.pop(), values.pop())); 
+  
+        return values.pop(); 
+    } 
+    public static boolean hasPrecedence(char op1, char op2) 
+    { 
+        if (op2 == '(' || op2 == ')') 
+            return false; 
+        if ((op1 == '*' || op1 == '/' || op1 == '%') && (op2 == '+' || op2 == '-')) 
+            return false; 
+        else
+            return true; 
+    } 
+  
+    public static int applyOp(char op, int b, int a) 
+    { 
+        switch (op) 
+        { 
+        case '+': 
+            return a + b; 
+        case '-': 
+            return a - b; 
+        case '*': 
+            return a * b; 
+        case '/': 
+            if (b == 0) 
+                throw new
+                UnsupportedOperationException("Cannot divide by zero"); 
+            return a / b; 
+        case '%': 
+            if (b == 0) 
+                throw new
+                UnsupportedOperationException("Cannot mod by zero"); 
+            return a % b;
+        } 
+        return 0; 
+    } 
+  
+    public static void main(String[] args) 
+    { 
+        System.out.println(Answer.find("-5 + 8 * 6")); 
+        System.out.println(Answer.find("( 55 + 9 ) % 9")); 
+        System.out.println(Answer.find("20 + 3 * 5 / 8")); 
+        System.out.println(Answer.find("5 + 15 / 3 * 2 - 8 % 3")); 
+    } 
+}
+
+Q2.
+public class AmericanFlag{
+
+     public static void main(String []args)
+{
+
+String line1 = "==================================";      
+String help2 = " * * * * *  ";
+String help1 = "* * * * * * ";
+
+String line2 = "==============================================";
+
+for(int i = 0; i < 9; i++){
+System.out.println((i%2==0 ? help1 : help2) + line1);
+
+}
+
+for(int i = 0; i < 4; i++){
+System.out.println(line2);
+}
+     }
+}

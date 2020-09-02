@@ -1,0 +1,216 @@
+Q1. Implementation of Array methods:-
+1.concat()
+Sol:-var help1=["vivek","dahiya"]
+var help2=["is","an","employee","of","Accolite"]
+var result=help1.concat(help2)
+console.log(result);
+Output:- (7) ["vivek", "dahiya", "is", "an", "employee", "of", "Accolite"]
+--------------------------------------------------------------------------------------------------
+2.every()
+Sol:-var array = [17, 30, 26, 50]
+function check(array){
+return array>=56}
+console.log(array.every((check)));
+
+Output:-false
+-------------------------------------------------------------------------------------
+3.filter()
+Sol:-var array = [17, 30, 26, 50]
+function check(array){
+return array>=40}
+console.log(array.filter((check)));
+
+Output:- [50]
+--------------------------------------------------------------------------------------
+4.forEach()
+var array = [17, 30, 26, 50];
+array.forEach(element => console.log(array))
+
+Output:-
+VM942:2 (4) [17, 30, 26, 50]
+VM942:2 (4) [17, 30, 26, 50]
+VM942:2 (4) [17, 30, 26, 50]
+VM942:2 (4) [17, 30, 26, 50]
+---------------------------------------------------------------------------------------------------------
+5.indexOf()
+var array = [17, 30, 26, 50];
+array.indexOf(50);
+
+Output:-3
+--------------------------------------------------------------------
+6.Join()
+var help=["one","two","three","four"]
+var result=help.join();
+console.log(result)
+Output:3 one,two,three,four
+-----------------------------------------------------------------------------
+7.lastindexof()
+var help=["one","two","three","four","one"]
+help.lastIndexOf("one")
+output:-4
+-------------------------------------------------------------------------------------
+8. map()
+var array = [45, 4, 12, 45];
+var result = array.map(increment)
+
+function increment(n) {
+  return n * 10;
+}
+console.log(result)
+VM1532:7 (4) [450, 40, 120, 450]
+-----------------------------------------------------------------------\
+9.pop()
+var array=[1,2,3,4]
+array.pop()
+Output:-4
+-------------------------------------------------------------------
+10.push()
+var array=[1,2,3,4]
+array.push(5)
+output:-5
+---------------------------------------------
+11.reduce()
+var array=[100,200,300,400]
+function change(one, two) {
+  return one - two;
+}
+console.log(array.reduce(change))
+Output:-VM2151:5 -800
+----------------------------------------------
+12.reduceRight()
+var array=[100,200,300,400]
+function change(one, two) {
+  return one - two;
+}
+console.log(array.reduceRight(change))
+Output:5 -200
+------------------------------------------------------------------------
+13.reverse()
+var help=[1,2,3,4]
+help.reverse()
+Output:-(4) [4, 3, 2, 1]
+-----------------------------------------------------------------
+14.shift()
+var help=[1,2,3,4]
+help.shift()
+output:-1
+----------------------------------------------------
+15.slice()
+var help=[1,2,3,4]
+help.slice(1,3)
+Output:-(2) [2, 3]
+-------------------------------------------------------------
+16.some()
+var help=[1,2,3,4]
+function change(help){
+return help>2}
+console.log(help.some(change()))
+output:-true
+------------------------------------------------------------
+---------------------------------------------
+17.tosource()
+     function Dog(name, breed, color, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+  this.sex = sex;
+}
+
+theDog = new Dog('Tommy', 'Labra', 'white', 'male');
+
+theDog.toSource();
+
+Output:-name:"Tommy",breed:"Labra",color:"white",sex:"male"
+-------------------------------------------------
+18.sort()
+var array=["cvf","ddd","dvd","kjj","add"]
+array.sort()
+Output:-(5) ["add", "cvf", "ddd", "dvd", "kjj"]
+------------------------------------------------------------------------
+19.splice()
+
+var array=["cvf","ddd","dvd","kjj","add"]
+array.splice(2,1,"abcd",,"dcb")
+console.log(array)
+Output:-(5) ["cvf", "ddd", "abcd", "dcb", "add"]
+-----------------------------------------------------------------------
+20.tostring()
+var help=["vf","ff","aa"]
+help.toString()
+output:-"vf,ff,aa"
+----------------------------------------------------------------------
+21.unshift()
+var help=["vf","ff","aa"]
+help.unshift("11","12")
+console.log(help)
+output:-(5) ["11", "12", "vf", "ff", "aa"]
+---------------------------------------------------------------------------
+
+Q2.
+\n:-The \n character is used to find a newline character.
+
+\n returns the position where the newline character was found. If no match is found, it returns -1.
+
+\r:-The \r metacharacter is used to find a carriage return character.
+
+\r returns the position where the carriage return character was found. If no match is found, it returns -1.
+---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+Q.3.
+(a).
+var reg1=/^The/;
+var reg2=/^the/;
+var reg3=/hello$/;
+var reg4=/h[a,e,i,o,u]?.t/
+if((reg1.test("The sun is aahahathello") || reg2.test("The sun is aahahathello") ) && reg3.test("The sun is aahahathello") )
+{
+    console.log("Test1: true");
+}
+else{
+console.log("Test1:false");
+}
+if(reg4.test("The sun is aahahathello"))
+{ console.log("Test2:true");
+}
+else{ console.log("Test2:false");}
+
+----------------------------------------------------------------------------------------------------------------------
+(b).
+var x=window.prompt("enter size of array");
+var array=[];
+for( var i=0;i<x;i++){
+array[i]=window.prompt("enter element "+(i+1));
+}
+var x=window.prompt("Enter 1 for high pass filter ,0 for low pass filter");
+var a=window.prompt("Enter level of filteration");
+if(x==1){
+function check(array)
+{
+  return array>=a; 
+}
+
+alert(array=array.filter(check));
+}
+else if(x==0){
+function check(array)
+{
+  return array<=a; 
+}
+alert(array=array.filter(check));
+}
+else { alert("Wrong entry"); }
+array.forEach((item,index)=>{console.log(item,index)});
+var result = array.map(increment)
+
+function increment(n) {
+  return n * 10;
+}
+console.log(result);
+
+----------------------------------------------Thank You !!----------------------------------------------------------------------
+
+
+
+
+
