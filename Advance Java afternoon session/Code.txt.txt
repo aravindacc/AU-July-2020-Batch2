@@ -1,0 +1,358 @@
+Ques 1) Create a functional interface and use - lambda, static method, instance method and contructor references to instantiate it.
+Answer 1: 
+
+public class FunctionalInterfaceInstantiation {
+    static int a,b;
+    public FunctionalInterfaceInstantiation(int a, int b)
+    {
+       this.a=a;
+       this.b=b;
+    }
+public static void main(String[] args )
+{
+  FunctionalInterfaceInstantiation op = new FunctionalInterfaceInstantiation(4,5);
+       operation addition = (int a, int b) -> a + b;
+  System.out.println("sum of 2 numbers using functional interf= " + op.executor(a, b, addition)); 
+}
+   interface operation
+   {
+public int sum(int a, int b);
+   }
+   int executor(int a, int b, operation dosum) {
+      return dosum.sum(a,b);
+   }
+
+}
+
+
+
+
+
+
+Ques 2) Demonstrate that local variable used in lamda expression must be final or effectively final and instance variable can be changed inside the lambda expression.
+Answer 2:
+Effectively final variable means that a non-final local variable whose value never changes after initialization is called “Effectively Final”.
+ we could not use a non-final local variable in an anonymous class. If you wanna have access to a local variable in anonymous class, you have to make it final.
+Hence to the need to make local variable final if it’s not changed once it is initialized as lambda in itself is nothing but an anonymous class.
+
+A variable is final or effectively final when it's initialized once and is never mutated in its owner class; we can't initialize it in loops or inner classes.
+
+public class EffectiveFinalDemo{
+
+    public static void main(String args[]) {
+        String nonFinal = "I am non final local variable";
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Using non-final local variable
+                                      inside anonymous class in Java");
+                System.out.println("Value of non-final variable is : " 
+                                              + nonFinal);
+
+            }
+        };
+
+        Thread t = new Thread(r);
+        t.start();
+    }
+
+}
+
+
+
+Ques 4) Find the replacement of continue keyword when you are iterating over a collection using forEach() method.
+   eg-List<integer> ints=new ArrayList<>();
+      ints.forEach(x->System.out.println(x))
+Now using this method if we want to skip some object contditionally. Then How are we gonna do. (In for loop we have continue keyword but here how we'll do)
+Please write a program for the same.
+
+Answer 4:
+List<integer> ints=new ArrayList<>();
+      ints.forEach(x->System.out.println(x))
+ 
+ 
+public static void main(String[] args) {
+  List<integer> ints=new ArrayList<>();
+    ints.add(1);
+   ints.add(2);
+    ints.add(3);
+
+    ints.stream().forEach(x -> {
+        if (x=9) return;
+        System.out.println(x);
+    });
+}
+
+
+
+
+Ques 5) Establish a jdbc connection to a database and print first 10 rows of the table.
+
+import java.sql.*;
+
+public class JDBC
+{
+Connection conn = null;
+   Statement stmt = null;
+
+public static void main(String[] args) {
+   Connection conn = null;
+   Statement stmt = null;
+try {
+
+   Class.forName("oracle.jdbc.driver.OracleDriver");
+    
+String URL = "jdbc:oracle:thin:Vivek1234/password@Vivek:1521:DATABASE NAME";
+    conn = DriverManager.getConnection(URL);
+
+ System.out.println("Connected database successfully");
+
+
+      System.out.println("Creating statement");
+      stmt = conn.createStatement();
+
+      String sql = "SELECT * FROM Customers LIMIT 10";
+        int i=10;
+      while(i>=0){
+         int id  = rs.getInt("id");
+         int age = rs.getInt("age");
+         String first = rs.getString("first");
+         String last = rs.getString("last");
+
+         System.out.print("ID: " + id);
+         System.out.print(", Age: " + age);
+         System.out.print(", First: " + first);
+         System.out.println(", Last: " + last);
+           
+            i--;
+      }
+    
+   }catch(SQLException se){
+      se.printStackTrace();
+   }catch(Exception e){
+      e.printStackTrace();
+   }finally{
+      try{
+         if(stmt!=null)
+            conn.close();
+      }catch(SQLException se){
+      }try{
+         if(conn!=null)
+            conn.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }
+   }
+ 
+}
+}
+
+
+
+Ques 6) Create a dummy xml and parse and print its data using java program.
+Answer 6:
+package MyPackage;
+ 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+  
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+  
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+  
+public class XMl {
+  
+     public static void main(String[] args) throws ParserConfigurationException,
+          SAXException, IOException {
+  
+          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+          DocumentBuilder builder = factory.newDocumentBuilder();
+  
+          Document document = builder.parse(new File("Employees.xml"));
+  
+          List<Employee> employees = new ArrayList<Employee>();
+          NodeList nodeList = document.getDocumentElement().getChildNodes();
+          for (int i = 0; i < nodeList.getLength(); i++) {
+               Node node = nodeList.item(i);
+  
+               if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem = (Element) node;
+  
+                    String ID = node.getAttributes().getNamedItem("ID").getNodeValue();
+  
+                    String firstname = elem.getElementsByTagName("Firstname")
+                                        .item(0).getChildNodes().item(0).getNodeValue();
+  
+                    String lastname = elem.getElementsByTagName("Lastname").item(0)
+                                        .getChildNodes().item(0).getNodeValue();
+  
+                    Integer age = Integer.parseInt(elem.getElementsByTagName("Age")
+                                        .item(0).getChildNodes().item(0).getNodeValue());
+  
+                    Double salary = Double.parseDouble(elem.getElementsByTagName("Salary")
+                                        .item(0).getChildNodes().item(0).getNodeValue());
+  
+                    employees.add(new Employee(ID, firstname, lastname, age, salary));
+               }
+          }
+  
+          for (Employee empl: employees)
+               System.out.println(empl.toString());
+     }
+}
+
+ 
+
+
+
+Ques 7) Write a program to list all files from a directory recursively with Java.
+Answer 7:
+import java.io.File; 
+  
+public class Help
+{ 
+     static void Print(File[] arr,int index,int level)  
+     { 
+        
+         if(index == arr.length) 
+             return; 
+           
+         for (int i = 0; i < level; i++) 
+             System.out.print("\t"); 
+           
+         if(arr[index].isFile()) 
+             System.out.println(arr[index].getName()); 
+           
+           Print(arr,++index, level); 
+    } 
+      
+    public static void main(String[] args) 
+    { 
+        String maindirectpath = "C:\\Users\\Vivek Dahiya\\Desktop\\Accolite"; 
+                  
+        File maindirect = new File(maindirectpath); 
+           
+        if(maindirect.exists() && maindirect.isDirectory()) 
+        { 
+            File array[] = maindirect.listFiles(); 
+              
+            System.out.println("Files from main directory are " + maindirect); 
+           
+              
+            Print(array,0,0);  
+       }  
+    } 
+} 
+
+
+
+
+Ques 8) Write a program to list out all files that are end with “.txt” extension in a folder, and then delete it.
+Answr 8:
+import java.io.*;
+
+public class FileChecker {
+
+   private static final String FILE_DIR = "c:\\folder";
+   private static final String FILE_TEXT_EXT = ".txt";
+
+   public static void main(String args[]) {
+	new FileChecker().deleteFile(FILE_DIR,FILE_TEXT_EXT);
+   }
+
+   public void deleteFile(String folder, String ext){
+
+     GenericExtFilter filter = new GenericExtFilter(ext);
+     File dir = new File(folder);
+
+     String[] list = dir.list(filter);
+
+     if (list.length == 0) return;
+
+     File fileDelete;
+
+     for (String file : list){
+   	String temp = new StringBuffer(FILE_DIR)
+                      .append(File.separator)
+                      .append(file).toString();
+    	fileDelete = new File(temp);
+    	boolean isdeleted = fileDelete.delete();
+    	System.out.println("file : " + temp + " is deleted : " + isdeleted);
+     }
+   }
+
+   public class GenericExtFilter implements FilenameFilter {
+
+       private String ext;
+
+       public GenericExtFilter(String ext) {
+         this.ext = ext;
+       }
+
+       public boolean accept(File dir, String name) {
+         return (name.endsWith(ext));
+       }
+    }
+} 
+
+
+
+
+Ques 9) Write a program to copy one file into another.
+Answer 9:
+import java.io.*; 
+class copyfile 
+{ 
+    public static void main(String args[]) 
+    throws FileNotFoundException,IOException 
+    { 
+        
+        FileInputStream fin = new FileInputStream(args[0]); 
+        FileOutputStream fout = new FileOutputStream(args[1]); 
+  
+        int a; 
+        while  ((a=fin.read()) != -1) 
+            fout.write(a); 
+        fin.close(); 
+        fout.close(); 
+    } 
+}
+
+
+
+
+Ques 10)Write a program to copy a file from one directory to another directory.
+Answer 10:
+import java.io.*; 
+import java.nio.file.Files; 
+import java.nio.file.*; 
+  
+public class Move 
+{ 
+    public static void main(String[] args) throws IOException 
+    { 
+        Path temp = Files.move
+        (Paths.get("C:\\Users\\Nitin\\Desktop\\source.txt"),  
+        Paths.get("C:\\Users\\Nitin\\Desktop\\test\\destination.txt")); 
+  
+        if(temp != null) 
+        { 
+            System.out.println("File renamed and moved successfully"); 
+        } 
+        else
+        { 
+            System.out.println("Failed to move file"); 
+        } 
+    } 
+} 
+
+
+

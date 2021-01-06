@@ -1,0 +1,237 @@
+Javascipt Assignment
+Q1.Array methods
+Ans1.) 
+1.)concat()
+var array1 = ["a", "b" , "c"];
+var array2 = ["d", "e", "f"];
+var result = array1.concat(array2);
+console.log(result);
+Output :
+VM605:1 (6) ["a", "b", "c", "d", "e", "f"]
+----------------------------------------------
+2.)every()
+var ages = [32, 33, 19, 40];
+
+function checkAdult(age) {
+  return age >= 18;
+}
+
+console.log(ages.every(checkAdult));
+Output :
+VM979:7 true
+-----------------------------------------------
+3.)filter()
+var ages = [32, 33, 16, 40];
+
+function checkAdult(age) {
+  return age >= 18;
+}
+
+console.log(ages.filter(checkAdult));
+Output :
+VM1347:7 (3) [32, 33, 40]
+-----------------------------------------------
+4.)forEach()
+var fruits = ["apple", "orange", "cherry"];
+fruits.forEach(x => console.log(x));
+Output :
+VM1703:2 apple 
+VM1703:2 orange 
+VM1703:2 cherry 
+------------------------------------------------
+5.)indexOf()
+var arr=[1,2,2,3];
+arr.indexOf(2);
+Output :
+1
+--------------------------------------------------
+6.)join()
+var arr=[1,2,2,3];
+arr.join()
+Output :
+"1,2,2,3"
+--------------------------------------------------
+7.)lastIndexOf()
+var arr=[1,2,2,3,3];
+arr.lastIndexOf(2);
+Output :
+2
+--------------------------------------------------
+8.)map()
+var numbers = [4, 9, 16, 25];
+var x = numbers.map(Math.sqrt);
+console.log(x);
+Output :
+VM2611:3 (4) [2, 3, 4, 5]
+---------------------------------------------------
+9.)pop()
+var numbers = [4, 9, 16, 25];
+numbers.pop();
+console.log(numbers);
+Output :
+25
+VM2829:1 (3) [4, 9, 16]
+-----------------------------------------------------
+10.)push()
+var numbers = [4, 9, 16, 25];
+numbers.push(5);
+console.log(numbers);
+Output :
+VM2943:3 (5) [4, 9, 16, 25, 5]
+-----------------------------------------------------
+11.)reduce()
+var numbers = [175, 50, 25];
+function myFunc(total, num) {
+  return total - num;
+}
+console.log(numbers.reduce(myFunc));
+Output :
+VM3164:6 100
+------------------------------------------------------
+12.)reuceRight()
+var numbers = [175, 50, 25];
+function myFunc(total, num) {
+  return total - num;
+}
+console.log( numbers.reduceRight(myFunc));
+Output :
+VM3483:2 -200
+---------------------------------------------------------
+13.)reverse()
+var numbers = [175, 50, 25];
+console.log(numbers.reverse());
+Output :
+VM4222:2 (3) [25, 50, 175]
+---------------------------------------------------------
+14.)shift()
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();
+Output :
+"Banana"
+---------------------------------------------------------
+15.)slice()
+var numbers = [175, 50, 25, 34, 1, 7, 12];
+console.log(numbers.slice(2,5));
+Output :
+VM4637:2 (3) [25, 34, 1]
+-----------------------------------------------------------
+16.)some()
+var ages = [3, 10, 18, 20];
+
+function checkAdult(age) {
+  return age >= 18;
+}
+console.log(ages.some(checkAdult));
+Output :
+VM4784:6 true
+-----------------------------------------------------------
+17.)toSource()
+   function Dog(name, breed, color, sex) {
+  this.name = name;
+  this.breed = breed;
+  this.color = color;
+  this.sex = sex;
+}
+
+theDog = new Dog('Tommy', 'Labra', 'white', 'male');
+
+theDog.toSource();
+
+Output :
+name:"Tommy",breed:"Labra",color:"white",sex:"male"
+----------------------------------------------------------
+18.)sort()
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return a-b}); 
+Output :
+(6) [1, 5, 10, 25, 40, 100]
+------------------------------------------------------------
+19.)splice()
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+console.log(fruits);
+Output :
+VM5483:1 (6) ["Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango"]
+-------------------------------------------------------------
+20.)toString()
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+var x = fruits.toString();
+console.log(x);
+Output :
+VM5727:1 Banana,Orange,Apple,Mango
+---------------------------------------------------------------
+21.)unshift()
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon","Pineapple");
+console.log(fruits);
+Output :
+VM5902:1 (6) ["Lemon", "Pineapple", "Banana", "Orange", "Apple", "Mango"]
+
+=============================================================================
+Ques2)
+New line (\n) creates a new line by taking the cursor at the beginning of the next line.
+
+Carriage return (\r) takes the cursor at the beginning of the line, in which the cursor is present.
+
+=============================================================================
+Ques3)
+a.)
+var c1=/^The/;
+var c2=/^the/;
+var c3=/hello$/;
+var c4=/h[a,e,i,o,u]?.t/
+if((c1.test("The sun is aahawthello") || c2.test("The sun is aahawthello") ) && c3.test("The sun is aahawthello") )
+{
+    console.log("Test1: true");
+}
+else{
+console.log("Test1:false");
+}
+if(c4.test("The sun is aahahawthello"))
+{ console.log("Test2:true");
+}
+else{ console.log("Test2:false");}
+
+Output :
+Test1: true
+Test2:true
+
+b.)
+var n=window.prompt("Enter size of Array : ");
+var arr=[];
+for( var i=0;i<n;i++){
+arr[i]=window.prompt("Enter "+(i+1) + "th element");
+}
+var x=window.prompt("Enter 1 for high pass filter ,0 for low pass filter");
+var a=window.prompt("Enter level of filteration");
+if(x==1){
+function check(array)
+{
+  return array>=a; 
+}
+
+console.log(arr=arr.filter(check));
+}
+else if(x==0){
+function check(array)
+{
+  return array<=a; 
+}
+console.log(arr=arr.filter(check));
+}
+else { console.log("Wrong entry"); }
+arr.forEach((item,index)=>{console.log(item,index)});
+var result = arr.map(increment)
+
+function increment(n) {
+  return n * 10;
+}
+console.log(result);
+
+
+Output :
+VM55:14 (3) ["3", "4", "5"]
+VM55:24 3 0
+VM55:24 4 1
+VM55:24 5 2
+VM55:30 (3) [30, 40, 50]

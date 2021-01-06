@@ -1,0 +1,3 @@
+com/accolite/au/arithmetics/base/App.class
+com/accolite/au/arithmetics/base/interfaces/ArithmeticOperations.class
+com/accolite/au/arithmetics/base/implementors/ArithmeticOperationsImplementor.class
